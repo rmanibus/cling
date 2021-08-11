@@ -46,7 +46,7 @@ public abstract class UpnpMessage<O extends UpnpOperation> {
     private int udaMinorVersion = 0;
 
     private O operation;
-    private UpnpHeaders headers = new UpnpHeaders();
+    private UpnpHeaders headers = new UpnpHeaders(false);
     private Object body;
     private BodyType bodyType = BodyType.STRING;
 

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <prerequisites>
-        <maven>3.3.1</maven>
+        <maven>3.6.3</maven>
     </prerequisites>
 
     <!-- ##################################################################################################### -->
@@ -81,8 +81,8 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>15</maven.compiler.source>
+        <maven.compiler.target>15</maven.compiler.target>
 
         <seamless.version>1.1.2</seamless.version>
         <lemma.version>1.1.1</lemma.version>
@@ -138,7 +138,7 @@
 
         <pluginManagement>
             <plugins>
-                
+
                 <!-- Assembly -->
                 <plugin>
                     <artifactId>maven-assembly-plugin</artifactId>
@@ -157,17 +157,29 @@
                 <!-- Javadoc generation settings -->
                 <plugin>
                     <artifactId>maven-javadoc-plugin</artifactId>
-                    <version>2.10.2</version>
+                    <version>3.3.0</version>
                     <configuration>
                         <quiet>true</quiet>
-                        <additionalparam>-Xdoclint:none</additionalparam>
+                        <additionalJOptions>
+                            <additionalJOption>
+                                -Xdoclint:none
+                            </additionalJOption>
+                            <additionalJOption>
+                                --add-exports
+                            </additionalJOption>
+                            <additionalJOption>
+                                java.base/sun.net.www.protocol.http=ALL-UNNAMED
+                            </additionalJOption>
+
+                        </additionalJOptions>
                     </configuration>
                 </plugin>
 
                 <!-- Source JARs -->
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-source-plugin</artifactId>
-                    <version>2.4</version>
+                    <version>3.2.1</version>
                 </plugin>
 
                 <!-- Cross-referenced source code -->
@@ -242,16 +254,20 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.7.0</version>
+                    <version>3.8.1</version>
                     <configuration>
                         <source>${maven.compiler.source}</source>
                         <target>${maven.compiler.target}</target>
+                        <compilerArgs>
+                            <arg>--add-exports</arg>
+                            <arg>java.base/sun.net.www.protocol.http=ALL-UNNAMED</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
-                    <version>3.1.0</version>
+                    <version>3.2.0</version>
                 </plugin>
 
             </plugins>

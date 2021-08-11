@@ -16,7 +16,19 @@
 
     <build>
         <plugins>
-
+            <plugin>
+                <groupId>org.jboss.jandex</groupId>
+                <artifactId>jandex-maven-plugin</artifactId>
+                <version>1.1.0</version>
+                <executions>
+                    <execution>
+                        <id>make-index</id>
+                        <goals>
+                            <goal>jandex</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <!-- Unit tests -->
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -55,11 +67,12 @@
             </plugin>
 
             <!-- Generate documentation for distribution packaging -->
+            <!--
             <plugin>
                 <groupId>org.fourthline.lemma</groupId>
                 <artifactId>lemma-maven-plugin</artifactId>
                 <configuration>
-                    <!-- The directories containing Java (test) sources for citation -->
+                    <! - The directories containing Java (test) sources for citation - >
                     <sourceDirectories>
                         <sourceDirectory>src/main/java</sourceDirectory>
                         <sourceDirectory>src/test/java</sourceDirectory>
@@ -77,8 +90,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-
+            </plugin>-->
             <!-- Website lifecycle -->
             <plugin>
                 <artifactId>maven-site-plugin</artifactId>
@@ -130,7 +142,6 @@
                     </reportPlugins>
                 </configuration>
             </plugin>
-
         </plugins>
     </build>
 
@@ -204,10 +215,9 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>javax.enterprise</groupId>
-            <artifactId>cdi-api</artifactId>
-            <version>${cdi.api.version}</version>
-            <scope>provided</scope>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>2.0.2</version>
         </dependency>
         <dependency>
             <groupId>net.sf.kxml</groupId>
